@@ -47,14 +47,15 @@ def validate_data(values):
 
     return True
 
-def update_sales_worksheet(data):
+def update_worksheet(data, worksheet):
     """
-    Update the worksheet sales with the input data
+    Update the worksheet depending on the worksheet name as argument
     """
-    print("Updating the data...\n")
-    sales_worksheet = SHEET.worksheet('sales')
-    sales_worksheet.append_row(data)
-    print("Sales worksheet updated sucessfully.\n")
+    print(f"Updating {worksheet}..\n")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+    print("The worksheep was sucessfully updated..\n")
+
 
 def calculate_surplus_data(sales_row):
     """
@@ -75,28 +76,16 @@ def calculate_surplus_data(sales_row):
 
     return surplus_data
 
-def update_surplus_worksheet(surplus_data):
-    """
-    Update the surplus worksheet with the new data
-    """
-    print("Updating data...\n")
-    surplus_worksheet = SHEET.worksheet('surplus')
-    surplus_worksheet.append_row(surplus_data)
-    print("Surplus updated successfully.\n")
-
-
-
-
 def main():
     """
     Main function to call the all the program functions
     """
     data = get_sales_data()
     sales_data = [int(num) for num in data]
-    update_sales_worksheet(sales_data)
+    update_worksheet(sales_data, 'sales')
     new_surplus_data = calculate_surplus_data(sales_data)
-    update_surplus_worksheet(new_surplus_data)
-    
+    update_worksheet(new_surplus_data, 'surplus')
+
 
 
 print("Welcome to LoveSandwiches Data Automation.\n")
