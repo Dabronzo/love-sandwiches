@@ -91,6 +91,20 @@ def get_sales_column_data():
         columns.append(column[-5:])
     return columns
 
+def calculate_stock_data(data):
+    """
+    Calculate the average with the last 5 itens of the sales
+    """
+    print("Calculating stock data...\n")
+    new_stock_data = []
+    
+    for column in data:
+        int_column = [int(num) for num in column]
+        average = sum(int_column) / len(int_column)
+        stock_numb = average * 1.1
+        new_stock_data.append(round(stock_numb))
+    return new_stock_data
+
 def main():
     """
     Main function to call the all the program functions
@@ -100,10 +114,15 @@ def main():
     update_worksheet(sales_data, 'sales')
     new_surplus_data = calculate_surplus_data(sales_data)
     update_worksheet(new_surplus_data, 'surplus')
+    sales_column = get_sales_column_data()
+    stock_data = calculate_stock_data(sales_column)
+    update_worksheet(stock_data, 'stock')
+    
+
 
 
 
 print("Welcome to LoveSandwiches Data Automation.\n")
-# main()
-sales_column = get_sales_column_data()
+main()
+
 
