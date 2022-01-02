@@ -1,6 +1,5 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from pprint import pprint
 
 
 SCOPE = [
@@ -23,7 +22,7 @@ def get_sales_data():
         print("The input shall be a list of six numbers with a ',' as separator")
         print("Exemple: 10,20,30,40,50,60\n")
 
-        data_str = input("Enter yout data here: ")
+        data_str = input("Enter yout data here:\n ")
         sales_data = data_str.split(',')
         if validate_data(sales_data):
             print("Data is valid!")
@@ -117,7 +116,7 @@ def main():
     sales_column = get_sales_column_data()
     stock_data = calculate_stock_data(sales_column)
     update_worksheet(stock_data, 'stock')
-    
+
 
 
 
